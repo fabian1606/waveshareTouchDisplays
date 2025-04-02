@@ -6,9 +6,6 @@ English version [ here. ](./README.en.md)
 
 In dieser Anleitung werden wir mit einem Touch-Display arbeiten, das von einem ESP32 Mikrocontroller gesteuert wird. Mit der LVGL (Light and Versatile Graphics Library) kannst du schnell und einfach moderne Benutzeroberflächen erstellen - von einzelnen Buttons bis hin zu komplexen Dashboards.
 
-### Einführung in PlatformIO
-
-PlatformIO ist eine professionelle Entwicklungsumgebung, die die Entwicklung von Software für Mikrocontroller erleichtert. Sie bietet Funktionen wie eine integrierte Bibliotheksverwaltung, eine leistungsstarke Code-Vervollständigung und eine einfache Projektverwaltung. Mit PlatformIO kannst du effizienter arbeiten und deine Projekte schneller umsetzen.
 
 ## LVGL
 
@@ -38,6 +35,8 @@ Du hast zwei Möglichkeiten, den Code herunterzuladen:
    - Wähle "Download ZIP"
    - Entpacke die ZIP-Datei in einen Ordner deiner Wahl
 
+   ![download zip](./docs/download.png)
+
 2. **Mit Git** (optional)
    - Falls du Git installiert hast, kannst du das Repository auch direkt klonen
 
@@ -59,10 +58,11 @@ Du hast zwei Möglichkeiten, den Code herunterzuladen:
 3. **Projekt öffnen**
 
    - Öffne VS Code
-   - Klicke auf das PlatformIO-Symbol an der linken Seite (falls das Symbol nicht da ist, Erweiterung kurz deaktivieren und wieder aktivieren)
+   - Klicke auf das PlatformIO-Symbol an der linken Seite (falls das Symbol nicht da ist Erweiterung kurz deaktivieren und wieder aktivieren)
    - Wähle "Open Project"
    - Navigiere zum Projektordner und öffne ihn
-   ![Project öffnen](./docs/openFolder.png)
+
+     ![projekt öffnen](./docs/openFolder.png)
 
 4. **Board anschließen**
 
@@ -102,7 +102,7 @@ Hochladen geht wie oben beschrieben und einen Seriellen Monitor hat du 2 Icons w
 
 - Frag deine Dozenten
 - Schau in die [Waveshare Wiki](https://www.waveshare.com/wiki/ESP32-S3-Touch-LCD-2.1)
-- Nutze die [PlatformIO Community](https://community.platformio.org/)
+- frag ChatGPT :)
 
 ## Für Interessierte: Technische Details
 
@@ -120,16 +120,20 @@ PlatformIO ist eine professionelle Entwicklungsumgebung mit vielen Vorteilen:
 LVGL arbeitet auf mehreren Ebenen mit der Hardware zusammen:
 
 1. **Display-Treiber (ST7701)**
+
    - LVGL kommuniziert über einen Display-Treiber mit dem LCD
    - Der Treiber wandelt die LVGL-Grafikbefehle in Hardware-spezifische Kommandos um
    - Pixel-Daten werden über SPI/RGB an das Display gesendet
 
 2. **Touch-Controller (CST820)**
+
    - Der Touch-Controller erfasst Berührungen auf dem Display
    - Er meldet die X/Y-Koordinaten über I2C an LVGL
    - LVGL verarbeitet diese Eingaben und leitet sie an die UI-Elemente weiter
 
+
 3. **LVGL Display Driver**
+
    - Verbindet LVGL mit dem ST7701 Display-Controller
    - Stellt den Framebuffer bereit
    - Kümmert sich um die Bildaktualisierung (Display Refresh)

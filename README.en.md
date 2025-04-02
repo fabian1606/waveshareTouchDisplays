@@ -56,6 +56,7 @@ You have two options to download the code:
    - Click on the PlatformIO icon on the left side (if the icon is missing, try disabling and re-enabling the extension)
    - Choose "Open Project"
    - Navigate to the project folder and open it
+     ![open project](./docs/openFolder.png)
 
 4. **Connect Board**
 
@@ -66,6 +67,9 @@ You have two options to download the code:
 5. **Upload Code**
    - Click the right arrow (→) at the bottom of the screen
    - Wait for the upload to complete
+     ![upload](./docs/upload.png)
+
+### Brief Platform IO (PIO) Introduction
 
 ### Common Issues
 
@@ -87,6 +91,7 @@ You have two options to download the code:
 - Ask your instructors
 - Check the [Waveshare Wiki](https://www.waveshare.com/wiki/ESP32-S3-Touch-LCD-2.1)
 - Use the [PlatformIO Community](https://community.platformio.org/)
+- Ask ChatGPT :)
 
 ## For Those Interested: Technical Details
 
