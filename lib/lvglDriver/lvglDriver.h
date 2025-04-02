@@ -1,8 +1,8 @@
 #pragma once
 
 #include <lvgl.h>
-#include "displaySt7701.h"
-#include "touchCst820.h"
+#include <displaySt7701.h>
+#include <touchCst820.h>
 
 // Display configuration
 #define TFT_HOR_RES 480

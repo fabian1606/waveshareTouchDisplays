@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Arduino.h"
-#include "i2cDriver.h"
-#include "tca9554Pwr.h"
+#include <Arduino.h>
+#include <i2cDriver.h>
+#include <tca9554Pwr.h>
 
 #define CST820_ADDR 0x15
 #define CST820_INT_PIN 16

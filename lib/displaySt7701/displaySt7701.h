@@ -15,9 +15,9 @@
 #include "driver/gpio.h"
 #include "freertos/task.h"
 
-#include "tca9554Pwr.h" // io extender
-#include "lvglDriver.h"
-#include "touchCst820.h"
+#include <tca9554Pwr.h> // io extender
+#include <lvglDriver.h>
+#include <touchCst820.h>
 
 #define LCD_CLK_PIN 2
 #define LCD_MOSI_PIN 1

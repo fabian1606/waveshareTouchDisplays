@@ -35,20 +35,20 @@ static uint32_t my_tick(void)
     return millis();
 }
 
-lv_display_t* Display_Init(void)
+lv_display_t *Display_Init(void)
 {
     // Initialize low-level drivers
     I2C_Init();
     TCA9554PWR_Init(0x00);
     Set_EXIO(EXIO_PIN8, Low);
     LCD_Init();
-    
+
     // Initialize LVGL
     lv_init();
     lv_tick_set_cb(my_tick);
 
     // Setup display
-    lv_display_t* display = lv_display_create(TFT_HOR_RES, TFT_VER_RES);
+    lv_display_t *display = lv_display_create(TFT_HOR_RES, TFT_VER_RES);
     lv_display_set_flush_cb(display, my_disp_flush);
     lv_display_set_buffers(display, draw_buf, NULL, sizeof(draw_buf), LV_DISPLAY_RENDER_MODE_PARTIAL);
 
