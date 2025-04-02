@@ -1,4 +1,4 @@
-#include "lvglDriver.h"
+#include <lvglDriver.h>
 
 // Global variables
 static lv_display_t* display = nullptr;
