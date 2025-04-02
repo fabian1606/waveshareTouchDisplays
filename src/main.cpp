@@ -17,16 +17,15 @@ void Driver_Init()
     I2C_Init();
     TCA9554PWR_Init(0x00);
     Set_EXIO(EXIO_PIN8, Low);
-    // PCF85063_Init();
 
-    // xTaskCreatePinnedToCore(
-    //     Driver_Loop,
-    //     "Other Driver task",
-    //     4096,
-    //     NULL,
-    //     3,
-    //     NULL,
-    //     0);
+    xTaskCreatePinnedToCore(
+        Driver_Loop,
+        "Other Driver task",
+        4096,
+        NULL,
+        3,
+        NULL,
+        0);
 }
 void setup()
 {
@@ -42,7 +41,7 @@ void setup()
 
 void loop()
 {
-    // Lvgl_Loop();
+    Lvgl_Loop();
     vTaskDelay(pdMS_TO_TICKS(5));
     delay(5);
 }

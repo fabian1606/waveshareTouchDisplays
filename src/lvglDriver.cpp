@@ -81,4 +81,7 @@ void Lvgl_Loop(void)
 {
     lv_timer_handler(); /* let the GUI do its work */
     delay(5); /* let this time pass */
+    lv_obj_t *label = lv_label_create(lv_scr_act());
+    lv_label_set_text(label, String(millis()/1000).c_str());
+    lv_obj_align(label, LV_ALIGN_CENTER, 0, 0);
 }
