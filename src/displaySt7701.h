@@ -22,7 +22,6 @@
 #define LCD_CLK_PIN 2
 #define LCD_MOSI_PIN 1
 #define LCD_Backlight_PIN 6
-#define LCD_CLK_SRC_DEFAULT SOC_MOD_CLK_PLL_F160M
 // Backlight
 #define PWM_Channel 1   // PWM Channel
 #define Frequency 20000 // PWM frequencyconst

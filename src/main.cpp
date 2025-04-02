@@ -19,32 +19,30 @@ void Driver_Init()
     Set_EXIO(EXIO_PIN8, Low);
     // PCF85063_Init();
 
-    xTaskCreatePinnedToCore(
-        Driver_Loop,
-        "Other Driver task",
-        4096,
-        NULL,
-        3,
-        NULL,
-        0);
+    // xTaskCreatePinnedToCore(
+    //     Driver_Loop,
+    //     "Other Driver task",
+    //     4096,
+    //     NULL,
+    //     3,
+    //     NULL,
+    //     0);
 }
 void setup()
 {
+    Serial.begin(115200);
+    Serial.println("LVGL Test");
     Driver_Init();
+    Serial.println("Driver Init OK");
     LCD_Init(); // If you later reinitialize the LCD, you must initialize the SD card again !!!!!!!!!!
+    Serial0.println("LCD Init OK");
     Lvgl_Init();
-
-    // Lvgl_Example1();
-    // lv_demo_widgets();
-    // lv_demo_benchmark();
-    // lv_demo_keypad_encoder();
-    // lv_demo_music();
-    // lv_demo_printer();
-    // lv_demo_stress();
+    Serial0.println("LVGL Init OK");
 }
 
 void loop()
 {
-    Lvgl_Loop();
+    // Lvgl_Loop();
     vTaskDelay(pdMS_TO_TICKS(5));
+    delay(5);
 }

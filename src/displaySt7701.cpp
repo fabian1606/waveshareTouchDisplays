@@ -1,23 +1,26 @@
 #include "displaySt7701.h"
-#include <SPI.h>
 
-SPIClass *vspi = NULL;
+spi_device_handle_t SPI_handle = NULL;
 esp_lcd_panel_handle_t panel_handle = NULL;
-
 void ST7701_WriteCommand(uint8_t cmd)
 {
-  digitalWrite(LCD_CS_PIN, LOW);
-  digitalWrite(LCD_DC_PIN, LOW);  // Command mode
-  vspi->transfer(cmd);
-  digitalWrite(LCD_CS_PIN, HIGH);
+  spi_transaction_t spi_tran = {
+      .cmd = 0,
+      .addr = cmd,
+      .length = 0,
+      .rxlength = 0,
+  };
+  spi_device_transmit(SPI_handle, &spi_tran);
 }
-
 void ST7701_WriteData(uint8_t data)
 {
-  digitalWrite(LCD_CS_PIN, LOW);
-  digitalWrite(LCD_DC_PIN, HIGH);  // Data mode
-  vspi->transfer(data);
-  digitalWrite(LCD_CS_PIN, HIGH);
+  spi_transaction_t spi_tran = {
+      .cmd = 1,
+      .addr = data,
+      .length = 0,
+      .rxlength = 0,
+  };
+  spi_device_transmit(SPI_handle, &spi_tran);
 }
 
 void ST7701_CS_EN()
@@ -313,7 +316,7 @@ void ST7701_Init()
   ST7701_WriteCommand(0x29);
   ST7701_CS_Dis();
 
-  //  RGB 
+  //  RGB
   esp_lcd_rgb_panel_config_t rgb_config = {
       .clk_src = LCD_CLK_SRC_DEFAULT,
       .timings = {
@@ -387,10 +390,15 @@ bool example_on_vsync_event(esp_lcd_panel_handle_t panel, const esp_lcd_rgb_pane
 }
 void LCD_Init()
 {
+  Serial.println("LCD_Init()");
   ST7701_Reset();
+  Serial.println("ST7701_Reset()");
   ST7701_Init();
+  Serial.println("ST7701_Init()");
   Touch_Init();
+  Serial.println("Touch_Init()");
   Backlight_Init();
+  Serial.println("Backlight_Init()");
 }
 
 void LCD_addWindow(uint16_t Xstart, uint16_t Ystart, uint16_t Xend, uint16_t Yend, uint8_t *color)
@@ -409,7 +417,7 @@ void LCD_addWindow(uint16_t Xstart, uint16_t Ystart, uint16_t Xend, uint16_t Yen
 uint8_t LCD_Backlight = 50;
 void Backlight_Init()
 {
-  pinMode(LCD_Backlight_PIN, OUTPUT);
+  ledcAttach(LCD_Backlight_PIN, Frequency, Resolution);
   Set_Backlight(LCD_Backlight); // 0~100
 }
 
@@ -419,7 +427,9 @@ void Set_Backlight(uint8_t Light) //
     printf("Set Backlight parameters in the range of 0 to 100 \r\n");
   else
   {
-    analogWrite(LCD_Backlight_PIN, Light * 255 / Backlight_MAX); // 0~255
-    LCD_Backlight = Light;
+    uint32_t Backlight = Light * 10;
+    if (Backlight == 1000)
+      Backlight = 1024;
+    ledcWrite(LCD_Backlight_PIN, Backlight);
   }
 }
